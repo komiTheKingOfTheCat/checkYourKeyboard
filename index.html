@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <title>CHECK YOUR KEYBOARD</title>
+</head>
+
+<style>
+    body {
+        margin:0 auto;
+        background:#DDDDDD;
+        color:#111111;
+        font-family:'Nanum Gothic', Fallback, sans-serif;
+        font-weight:bold;
+        text-align:center;
+        width:fit-content;
+    }
+
+    span {
+        display:inline-block;
+        font-weight:bold;
+    }
+
+    .hide {
+        display:none !important;
+    }
+
+
+    div.layout {
+        display:block;
+        margin:0 auto;
+        text-align:center;
+    }
+
+    div.header {
+        padding-top:1.5em;
+        font-size: 1.8rem;
+        font-weight:bold;
+    }
+
+    div.main_container {
+        padding:1.5em 0em;
+    }
+
+    div.keyboardView {
+        display:inline-block;
+        text-align:left;
+        margin:1em;
+    }
+
+    div.keyboardView.numpad {
+        height:fit-content;
+    }
+
+    div.keyboardView.text_center {
+        text-align:center;
+    }
+
+    div.footer {
+        padding-bottom:3em;
+        font-size:0.7rem;
+        font-weight:bold;
+        border-top:1px solid #777777;
+    }
+
+    div.footer .copyright {
+        margin:1em 0em;
+    }
+
+    .keys {
+        display:inline-block;
+        text-align:center;
+        width:3em;
+        height:3em;
+        margin-right:0.3em;
+        margin-bottom:0.3em;
+        border-radius: 7px;
+        box-shadow: 0px 0px 10px #777777;
+        border: 5px outset #333333;
+        font-size:0.8rem;
+        background:linear-gradient(0deg, #CCCCCC, #EEEEEE);
+    }
+
+    .keys.type_1 {
+        width:5em;
+    }
+
+    .keys.type_2 {
+        width:7em;
+    }
+
+    .keys.type_3 {
+        width:7.2em;
+    }
+
+    .keys.type_4 {
+        width:9.4em;
+    }
+
+    .keys.type_space {
+        width:25.85em;
+    }
+
+    .keys.type_num_0 {
+        width:7.5em;
+    }
+
+    .keys.type_num_ver {
+        height: 7em;
+        position: absolute;
+        margin-left: 0.35em;
+    }
+
+    .keys span {
+        height:0em;
+        vertical-align: middle;
+        position:relative;
+    }
+
+    .empty {
+        display:inline-block;
+        width:1.7em;
+        height:3em;
+        margin-bottom:0.3em;
+        border: 5px solid rgba(0, 0, 0, 0);
+        font-size:0.8rem;
+    }
+
+    .keys.status_down {
+        transition-duration: 50ms;
+        box-shadow: 0px 0px 0px #666666;
+        background:#D2691E;
+        color:#EEEEEE;
+    }
+
+    span.guide {
+        font-size:1rem;
+    }
+
+    span.detectedKeyCount {
+        color:#D2691E;
+        font-weight:bolder;
+        font-size:3rem;
+    }
+</style>
+
+<body>
+    <div class="layout header">
+        <span class="title">CHECK YOUR KEYBOARD</p>
+        <span class="hide">키보드 입력 테스트 | 동시입력 감지 | 키 이벤트</span>
+        <span class="guide detectedKeyCount">0</span><span class="guide">&nbsp;Keys Detected</span>
+    </div>
+
+    <div class="layout main_container">
+        <div class="keyboardView">
+            <div class="keys" data-code="Escape"><span>Esc</span></div>
+            <div class="empty">&nbsp;</div>
+            <div class="keys" data-code="F1"><span>F1</span></div>
+            <div class="keys" data-code="F2"><span>F2</span></div>
+            <div class="keys" data-code="F3"><span>F3</span></div>
+            <div class="keys" data-code="F4"><span>F4</span></div>
+            <div class="empty">&nbsp;</div>
+            <div class="keys" data-code="F5"><span>F5</span></div>
+            <div class="keys" data-code="F6"><span>F6</span></div>
+            <div class="keys" data-code="F7"><span>F7</span></div>
+            <div class="keys" data-code="F8"><span>F8</span></div>
+            <div class="empty">&nbsp;</div>
+            <div class="keys" data-code="F9"><span>F9</span></div>
+            <div class="keys" data-code="F10"><span>F10</span></div>
+            <div class="keys" data-code="F11"><span>F11</span></div>
+            <div class="keys" data-code="F12"><span>F12</span></div>
+            <br><br>
+            <div class="keys" data-code="Backquote"><span>`</span></div>
+            <div class="keys" data-code="Digit1"><span>1</span></div>
+            <div class="keys" data-code="Digit2"><span>2</span></div>
+            <div class="keys" data-code="Digit3"><span>3</span></div>
+            <div class="keys" data-code="Digit4"><span>4</span></div>
+            <div class="keys" data-code="Digit5"><span>5</span></div>
+            <div class="keys" data-code="Digit6"><span>6</span></div>
+            <div class="keys" data-code="Digit7"><span>7</span></div>
+            <div class="keys" data-code="Digit8"><span>8</span></div>
+            <div class="keys" data-code="Digit9"><span>9</span></div>
+            <div class="keys" data-code="Digit0"><span>0</span></div>
+            <div class="keys" data-code="Minus"><span>-</span></div>
+            <div class="keys" data-code="Equal"><span>=</span></div>
+            <div class="keys type_2" data-code="Backspace"><span>←&nbsp;Back</span></div>            
+            <br>
+            <div class="keys type_1" data-code="Tab"><span>Tab</span></div>
+            <div class="keys" data-code="KeyQ"><span>Q</span></div>
+            <div class="keys" data-code="KeyW"><span>W</span></div>
+            <div class="keys" data-code="KeyE"><span>E</span></div>
+            <div class="keys" data-code="KeyR"><span>R</span></div>
+            <div class="keys" data-code="KeyT"><span>T</span></div>
+            <div class="keys" data-code="KeyY"><span>Y</span></div>
+            <div class="keys" data-code="KeyU"><span>U</span></div>
+            <div class="keys" data-code="KeyI"><span>I</span></div>
+            <div class="keys" data-code="KeyO"><span>O</span></div>
+            <div class="keys" data-code="KeyP"><span>P</span></div>
+            <div class="keys" data-code="BracketLeft"><span>[</span></div>
+            <div class="keys" data-code="BracketRight"><span>]</span></div>
+            <div class="keys type_1" data-code="Backslash"><span>\</span></div>            
+            <br>
+            <div class="keys type_3" data-code="CapsLock"><span>CapsLock</span></div>
+            <div class="keys" data-code="KeyA"><span>A</span></div>
+            <div class="keys" data-code="KeyS"><span>S</span></div>
+            <div class="keys" data-code="KeyD"><span>D</span></div>
+            <div class="keys" data-code="KeyF"><span>F</span></div>
+            <div class="keys" data-code="KeyG"><span>G</span></div>
+            <div class="keys" data-code="KeyH"><span>H</span></div>
+            <div class="keys" data-code="KeyJ"><span>J</span></div>
+            <div class="keys" data-code="KeyK"><span>K</span></div>
+            <div class="keys" data-code="KeyL"><span>L</span></div>
+            <div class="keys" data-code="Semicolon"><span>;</span></div>
+            <div class="keys" data-code="Quote"><span>'</span></div>
+            <div class="keys type_3" data-code="Enter"><span>Enter</span></div>
+            <br>
+            <div class="keys type_4" data-code="ShiftLeft"><span>Shift</span></div>
+            <div class="keys" data-code="KeyZ"><span>Z</span></div>
+            <div class="keys" data-code="KeyX"><span>X</span></div>
+            <div class="keys" data-code="KeyC"><span>C</span></div>
+            <div class="keys" data-code="KeyV"><span>V</span></div>
+            <div class="keys" data-code="KeyB"><span>B</span></div>
+            <div class="keys" data-code="KeyN"><span>N</span></div>
+            <div class="keys" data-code="KeyM"><span>M</span></div>
+            <div class="keys" data-code="Comma"><span>,</span></div>
+            <div class="keys" data-code="Period"><span>.</span></div>
+            <div class="keys" data-code="Slash"><span>/</span></div>
+            <div class="keys type_4" data-code="ShiftRight"><span>Shift</span></div>
+            <br>
+            <div class="keys type_1" data-code="ControlLeft"><span>Ctrl</span></div>
+            <div class="keys type_1" data-code="MetaLeft"><span>Win</span></div>
+            <div class="keys type_1" data-code="AltLeft"><span>Alt</span></div>
+            <div class="keys type_space" data-code="Space"><span>Space</span></div>
+            <div class="keys type_1" data-code="AltRight"><span>Alt</span></div>
+            <div class="keys type_1" data-code="ContextMenu"><span>CM</span></div>
+            <div class="keys type_1" data-code="ControlRight"><span>Ctrl</span></div>
+        </div>
+
+        <div class="keyboardView text_center">
+            <div class="keys" data-code="PrintScreen"><span>PrtSc</span></div>
+            <div class="keys" data-code="ScrollLock"><span>ScrLk</span></div>
+            <div class="keys" data-code="Pause"><span>Pause</span></div>
+            <br><br>
+            <div class="keys" data-code="Insert"><span>Ins</span></div>
+            <div class="keys" data-code="Home"><span>Home</span></div>
+            <div class="keys" data-code="PageUp"><span>PgUp</span></div>
+            <br>
+            <div class="keys" data-code="Delete"><span>Del</span></div>
+            <div class="keys" data-code="End"><span>End</span></div>
+            <div class="keys" data-code="PageDown"><span>PgDn</span></div>
+            <br>
+            <div class="empty">&nbsp;</div>
+            <br>
+            <div class="keys" data-code="ArrowUp"><span>↑</span></div>
+            <br>
+            <div class="keys" data-code="ArrowLeft"><span>←</span></div>
+            <div class="keys" data-code="ArrowDown"><span>↓</span></div>
+            <div class="keys" data-code="ArrowRight"><span>→</span></div>
+        </div>
+
+        <div class="keyboardView numpad">
+            <div class="keys" data-code="NumLock"><span>Num</span></div>
+            <div class="keys" data-code="NumpadDivide"><span>/</span></div>
+            <div class="keys" data-code="NumpadMultiply"><span>*</span></div>
+            <div class="keys" data-code="NumpadSubtract"><span>-</span></div>
+            <br>
+            <div class="keys" data-code="Numpad7"><span>7</span></div>
+            <div class="keys" data-code="Numpad8"><span>8</span></div>
+            <div class="keys" data-code="Numpad9"><span>9</span></div>
+            <div class="keys type_num_ver" data-code="NumpadAdd"><span>+</span></div>
+            <br>
+            <div class="keys" data-code="Numpad4"><span>4</span></div>
+            <div class="keys" data-code="Numpad5"><span>5</span></div>
+            <div class="keys" data-code="Numpad6"><span>6</span></div>
+            <br>
+            <div class="keys" data-code="Numpad1"><span>1</span></div>
+            <div class="keys" data-code="Numpad2"><span>2</span></div>
+            <div class="keys" data-code="Numpad3"><span>3</span></div>
+            <div class="keys type_num_ver" data-code="NumpadEnter"><span>Enter</span></div>
+            <br>
+            <div class="keys type_num_0" data-code="Numpad0"><span>0</span></div>
+            <div class="keys" data-code="NumpadDecimal"><span>.</span></div>
+        </div>
+    </div>
+    <br>
+    <div class="google_ad">
+
+    </div>
+    <div class="layout footer">
+        <br>
+        <span class="copyright">© 2023. LEE KWANG BAEK&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved.</span>
+    </div>
+</body>
+</html>
+
+<script>
+    $(function(){
+        bindEvents();
+    });
+
+    function bindEvents()
+    {
+        $("body").on("keydown", function(e){
+            e.preventDefault();
+            
+            var key = e.key;
+            var code = e.code;
+
+            $(".keys").each(function(){
+                var keyViewed = $(this).data('code');
+
+                if(keyViewed == code){
+                    $(this).addClass("status_down");
+                    showDetectedKeyCount();
+                    return;
+                }
+            });
+        });
+
+        $("body").on("keyup", function(e){
+            e.preventDefault();
+
+            var key = e.key;
+            var code = e.code;
+
+            $(".keys.status_down").each(function(){
+                var keyViewed = $(this).data('code');
+
+                if(keyViewed == code){
+                    $(this).removeClass("status_down");
+                    showDetectedKeyCount();
+                    return;
+                }
+            });
+        });
+
+        $(document).on('visibilitychange', function(e){
+            e.preventDefault();
+
+            $(".keys.status_down").each(function(){
+                $(this).removeClass("status_down");
+            });
+        });
+
+        $(document).on('mouseleave', function(e){
+            e.preventDefault();
+
+            $(".keys.status_down").each(function(){
+                $(this).removeClass("status_down");
+            });
+        });
+    }
+
+    function showDetectedKeyCount()
+    {
+        var detectedKeyCount = $(".status_down").length;
+        $(".detectedKeyCount").html(detectedKeyCount);
+    }
+</script>
